@@ -1,0 +1,8 @@
+{
+  "/api": {
+    "target": "https://web.dragonball-api.com",
+    "secure": true,
+    "changeOrigin": true,
+    "logLevel": "debug"
+  }
+}

@@ -1,0 +1,58 @@
+<div class="dialog-overlay" [@overlayAnimation]="'in'" (click)="close()">
+  <div class="dialog-container" (click)="$event.stopPropagation()" [@dialogAnimation]="'in'">
+    <div class="hero-section">
+      <img [src]="data.image" [alt]="data.name" class="hero-image" />
+      <div class="hero-overlay">
+        <button class="close-button" (click)="close()">
+          <mat-icon aria-label="Close">close</mat-icon>
+        </button>
+        <div class="hero-content" [@contentAnimation]="'in'">
+          <h1>{{ data.name }}</h1>
+          <div class="hero-stats">
+            <span class="stat">{{ data.race }}</span>
+            <span class="dot">•</span>
+            <span class="stat">Power Level: {{ data.ki }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-section">
+      <div class="main-info" [@fadeAnimation]="'in'">
+        <p class="description">{{ data.description }}</p>
+
+        <div class="info-grid">
+          <div class="info-item">
+            <span class="label">Max Power</span>
+            <span class="value">{{ data.maxKi }}</span>
+          </div>
+          <div class="info-item">
+            <span class="label">Affiliation</span>
+            <span class="value">{{ data.affiliation }}</span>
+          </div>
+          <div class="info-item">
+            <span class="label">Gender</span>
+            <span class="value">{{ data.gender }}</span>
+          </div>
+        </div>
+      </div>
+
+      @if (data.transformations?.length) {
+        <div class="transformations-section" [@fadeAnimation]="'in'">
+          <h2>Transformations</h2>
+          <div class="transformations-grid">
+            @for (transform of data.transformations; track transform.id) {
+              <div class="transformation-card">
+                <img [src]="transform.image" [alt]="transform.name" />
+                <div class="transformation-info">
+                  <h3>{{ transform.name }}</h3>
+                  <span class="power">{{ transform.ki }}</span>
+                </div>
+              </div>
+            }
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</div>

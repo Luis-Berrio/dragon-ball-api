@@ -1,1 +1,60 @@
-/* You can add global styles to this file, and also import other style files */
+/* Google Fonts Import */
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
+
+/* Reset y variables globales */
+:root {
+  --primary: #ff4081;
+  --primary-dark: #f50057;
+  --background: #121212;
+  --surface: #1e1e1e;
+  --text: #ffffff;
+  --text-secondary: rgba(255, 255, 255, 0.7);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Outfit', sans-serif;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--text);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Estilos del dialog personalizado */
+.character-dialog .mdc-dialog__surface {
+  background-color: transparent !important;
+  box-shadow: none !important;
+}
+
+.character-dialog .mdc-dialog__container {
+  height: 100%;
+}
+
+.character-dialog .mat-mdc-dialog-surface {
+  border-radius: 0 !important;
+  background-color: transparent !important;
+}
+
+/* Scrollbar personalizado */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.4);
+}
