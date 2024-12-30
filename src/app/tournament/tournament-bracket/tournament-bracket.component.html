@@ -1,0 +1,23 @@
+<div class="tournament-bracket">
+  <div class="round quarter-finals">
+    <h3>Cuartos de Final</h3>
+    <div *ngFor="let battle of results.slice(0, 4)" class="match">
+      <span [class.winner]="battle.winner === battle.player1">{{ battle.player1 }}</span>
+      <span [class.winner]="battle.winner === battle.player2">{{ battle.player2 }}</span>
+    </div>
+  </div>
+  <div class="round semi-finals">
+    <h3>Semifinales</h3>
+    <div *ngFor="let battle of results.slice(4, 6)" class="match">
+      <span [class.winner]="battle.winner === battle.player1">{{ battle.player1 }}</span>
+      <span [class.winner]="battle.winner === battle.player2">{{ battle.player2 }}</span>
+    </div>
+  </div>
+  <div class="round final">
+    <h3>Final</h3>
+    <div class="match">
+      <span [class.winner]="results[6].winner === results[6].player1">{{ results[6].player1 }}</span>
+      <span [class.winner]="results[6].winner === results[6].player2">{{ results[6].player2 }}</span>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,12 @@
+<div class="grid grid-cols-4 gap-4">
+  <div *ngFor="let character of characters" class="card" [class.selected]="isSelected(character.id)">
+    <h3>{{ character.name }}</h3>
+    <img [src]="character.image" [alt]="character.name" class="w-full h-40 object-cover mb-2">
+    <p>Power Level: {{ character.powerLevel }}</p>
+    <button (click)="toggleSelection(character.id)"
+            [disabled]="selectedCharacters.length >= 8 && !isSelected(character.id)"
+            class="btn btn-primary">
+      {{ isSelected(character.id) ? 'Deselect' : 'Select' }}
+    </button>
+  </div>
+</div>

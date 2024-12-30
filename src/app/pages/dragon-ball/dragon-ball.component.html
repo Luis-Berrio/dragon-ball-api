@@ -1,15 +1,26 @@
 <div class="container">
   <div class="header">
+    <button class="custom-button" (click)="goBack()">Home</button>
     <h1>Dragon Ball Characters</h1>
-    <button
-      class="custom-button"
-      (click)="fetchCharacters()"
-      [disabled]="isLoading"
-    >
-      {{ isLoading ? 'Fetching...' : 'Fetch Latest Characters' }}
-    </button>
-  </div>
 
+    <div class="controls">
+      <input
+        type="number"
+        min="1"
+        placeholder="Enter total items"
+        [(ngModel)]="totalItems"
+        class="custom-input"
+      />
+
+      <button
+        class="custom-button"
+        (click)="fetchCharacters()"
+        [disabled]="isLoading"
+      >
+        {{ isLoading ? "Updating..." : "Update" }}
+      </button>
+    </div>
+  </div>
 
   <!-- Character grid -->
   <div class="character-grid">

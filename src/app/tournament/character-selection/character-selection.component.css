@@ -1,0 +1,3 @@
+.card { border: 1px solid #ccc; padding: 10px; margin-bottom: 10px; }
+    .card.selected { border-color: blue; }
+    .btn { margin-top: 10px; }

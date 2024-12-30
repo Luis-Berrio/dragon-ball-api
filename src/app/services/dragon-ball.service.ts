@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from '../enviroments/enviroment';
 import { Character } from '../models/character.interface';
+import { TournamentResult } from '../models/tournamentReults';
 
 @Injectable({
   providedIn: 'root'
@@ -16,11 +17,7 @@ export class DragonBallService {
     return this.http.get<Character[]>(this.apiUrl);
   }
 
-  getCharacter(id: number): Observable<Character> {
-    return this.http.get<Character>(`${this.apiUrl}/${id}`);
-  }
-
-  fetchCharactersFromExternalApi(): Observable<void> {
-    return this.http.post<void>(`${this.apiUrl}/fetch`, {});
+  fetchCharactersFromExternalApi(totalItems: number): Observable<void> {
+    return this.http.post<void>(`${this.apiUrl}/fetch?totalItems=${totalItems}`, {});
   }
 }

@@ -1,0 +1,4 @@
+.tournament-bracket { display: flex; justify-content: space-between; }
+    .round { display: flex; flex-direction: column; justify-content: space-around; }
+    .match { display: flex; flex-direction: column; border: 1px solid #ccc; padding: 10px; margin: 10px; width: 150px; }
+    .winner { font-weight: bold; color: green; }

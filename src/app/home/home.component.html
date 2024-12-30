@@ -1,6 +1,48 @@
 <div class="home-container">
   <h1>Welcome!</h1>
   <p>Select an API:</p>
-  <button mat-raised-button color="primary" routerLink='/dragon-ball'>Dragon Ball</button>
-  <button mat-raised-button color="accent" routerLink="/rick-and-morty">Rick and Morty</button>
+
+  <div class="card-grid">
+    <!-- Card for Dragon Ball -->
+    <div class="card-container" (click)="navigateTo('dragon-ball')" [@cardAnimation]="'in'">
+      <div class="card-content">
+        <div class="image-section">
+          <img src="../../assets/dragon-ball.jpg" alt="Dragon Ball API" class="character-image" loading="lazy" />
+        </div>
+        <div class="info-section">
+          <h3 class="character-name">Dragon Ball API</h3>
+          <p>Frontend: Angular</p>
+          <p>Database: MongoDB</p>
+        </div>
+        <div class="hover-content">
+          <p>Explore Dragon Ball characters and their stats using Angular.</p>
+          <button class="view-more">
+            Select
+            <mat-icon>arrow_forward</mat-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card for Rick and Morty -->
+    <div class="card-container" (click)="navigateTo('rick-and-morty')" [@cardAnimation]="'in'">
+      <div class="card-content">
+        <div class="image-section">
+          <img src="../../assets/rick-and-morty.jpg" alt="Rick and Morty API" class="character-image" loading="lazy" />
+        </div>
+        <div class="info-section">
+          <h3 class="character-name">Rick and Morty API</h3>
+          <p>Frontend: React</p>
+          <p>Database: MySQL</p>
+        </div>
+        <div class="hover-content">
+          <p>Dive into Rick and Morty characters with a modern React interface.</p>
+          <button class="view-more">
+            Select
+            <mat-icon>arrow_forward</mat-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

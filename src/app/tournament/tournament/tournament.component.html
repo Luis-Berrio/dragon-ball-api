@@ -1,0 +1,22 @@
+<div class="container mx-auto p-4">
+  <h1 class="text-3xl font-bold mb-4">Dragon Ball Z Tournament of Power</h1>
+  <app-character-selection
+    [characters]="characters"
+    [selectedCharacters]="selectedCharacters"
+    (characterSelect)="handleCharacterSelect($event)">
+  </app-character-selection>
+  <button
+    (click)="startTournament()"
+    [disabled]="selectedCharacters.length !== 8"
+    class="btn btn-primary mt-4">
+    Start Tournament
+  </button>
+  <div *ngIf="tournamentResults" class="mt-8">
+    <h2 class="text-2xl font-bold mb-4">Tournament Results</h2>
+    <app-tournament-bracket [results]="tournamentResults.battleResults"></app-tournament-bracket>
+    <div class="mt-4">
+      <h3 class="text-xl font-bold">Winner: {{ tournamentResults.winner.name }}</h3>
+      <p>Final Power Level: {{ tournamentResults.battleResults[6].winningPower }}</p>
+    </div>
+  </div>
+</div>

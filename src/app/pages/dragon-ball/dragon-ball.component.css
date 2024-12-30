@@ -138,3 +138,39 @@ h1 {
     padding: 0;
   }
 }
+
+/* Custom input styles */
+.custom-input {
+  background: #1e1e1e;
+  color: white;
+  border: 1px solid #7c4dff;
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  margin-right: 1rem;
+  outline: none;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  width: 80px;
+  appearance: none;
+}
+
+.custom-input::-webkit-outer-spin-button,
+.custom-input::-webkit-inner-spin-button {
+  -webkit-appearance: none; /* Webkit */
+  margin: 0; /* Asegura que no haya espacio */
+}
+
+.custom-input:focus {
+  border-color: #ff4081;
+  box-shadow: 0 0 5px #ff4081;
+}
+
+.custom-input::placeholder {
+  color: #7c7c7c;
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}

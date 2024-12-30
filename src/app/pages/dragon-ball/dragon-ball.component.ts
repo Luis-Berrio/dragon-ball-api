@@ -2,16 +2,18 @@ import { Component, inject } from '@angular/core';
 import { DragonBallService } from '../../services/dragon-ball.service';
 import { CommonModule } from '@angular/common';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { switchMap, catchError, EMPTY, finalize } from 'rxjs';
+import { catchError, EMPTY, finalize, tap } from 'rxjs';
 import { CardComponent } from '../../components/card/card.component';
 import { MatDialog } from '@angular/material/dialog';
 import { CharacterDetailComponent } from '../../components/character-detail/character-detail.component';
 import { animate, style, transition, trigger } from '@angular/animations';
+import { FormsModule } from '@angular/forms'; // Importar para ngModel
+
 
 @Component({
   selector: 'app-dragon-ball',
   standalone: true,
-  imports: [CommonModule, CardComponent],
+  imports: [CommonModule, CardComponent, FormsModule],
   templateUrl: './dragon-ball.component.html',
   styleUrl: './dragon-ball.component.css',
   animations: [
@@ -27,12 +29,18 @@ export class DragonBallComponent {
   private characterService = inject(DragonBallService);
   private snackBar = inject(MatSnackBar);
   private dialog = inject(MatDialog);
+  totalItems = 0;
 
   characters$ = this.characterService.getCharacters();
   isLoading = false;
 
   ngOnInit() {
     this.loadCharacters();
+  }
+
+  goBack() {
+    // Navega a la página anterior
+    window.history.back();
   }
 
   loadCharacters() {
@@ -52,10 +60,16 @@ export class DragonBallComponent {
   fetchCharacters() {
     this.isLoading = true;
     this.characterService
-      .fetchCharactersFromExternalApi()
+      .fetchCharactersFromExternalApi(this.totalItems)
       .pipe(
-        switchMap(() => this.characterService.getCharacters()),
+        tap(() => {
+          this.snackBar.open('Characters fetched successfully!', 'Close', {
+            duration: 3000,
+          });
+          this.loadCharacters();
+        }),
         catchError((error) => {
+          console.error('Error fetching characters:', error);
           this.snackBar.open(
             'Error fetching characters. Please try again.',
             'Close',
@@ -63,15 +77,17 @@ export class DragonBallComponent {
           );
           return EMPTY;
         }),
-        finalize(() => (this.isLoading = false))
+        finalize(() => {
+          this.isLoading = false;
+        })
       )
-      .subscribe((characters) => {
-        this.snackBar.open('Characters fetched successfully!', 'Close', {
-          duration: 3000,
-        });
-        this.loadCharacters();
+      .subscribe({
+        error: (err) => {
+          console.error('Unexpected error in subscription:', err);
+        }
       });
   }
+
 
   trackById(index: number, character: any): number {
     return character.id;
